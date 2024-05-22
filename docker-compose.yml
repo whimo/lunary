@@ -1,0 +1,29 @@
+services:
+  postgres:
+    image: postgres:16
+    environment:
+      POSTGRES_USER: lunaryusr
+      POSTGRES_PASSWORD: lunarypwd
+      POSTGRES_DB: lunarydb
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3333:3333"
+      - "8080:8080"
+    depends_on:
+      - postgres
+    volumes:
+      - .:/app
+      - dbdata:/db
+      - /app/node_modules
+
+volumes:
+  pgdata:
+  dbdata:

@@ -11,6 +11,7 @@ cd lunary
 cp packages/backend/.env.example packages/backend/.env
 cp packages/frontend/.env.example packages/frontend/.env
 ```
+Note that to change the database credentials, you should edit them both in `docker-compose.yml` and in `packages/backend/.env`.
 
 3. Build and run:
 ```
